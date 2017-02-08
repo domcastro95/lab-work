@@ -1,0 +1,100 @@
+ 2038  gedit README.txt
+ 2039  ls
+ 2040  git add README.txt 
+ 2041  git commit -m "troubleshooting github repositories" 
+ 2042  git log
+ 2043  git push
+ 2044  git remote adderror: src refspec master does not match any.
+ 2045  git commit -m "initial commit"
+ 2046  git push origin master
+ 2047  ls
+ 2048  git status
+ 2049  git add hw-1-12-2017 hw-1-12-2017b.txt hw-1-12-2017c.txt hw-1-12-2017d.txt hw-1-12-2017e.txt week-2-hw-eeb174-copy.txt 
+ 2050  git push
+ 2051  git add hw-1-12-2017.txt hw-1-12-2017b.txt hw-1-12-2017c.txt hw-1-12-2017d.txt hw-1-12-2017e.txt week-2-hw-eeb174-copy.txt 
+ 2052  git commit -m "homework assignments"
+ 2053  git push
+ 2054  git remote addorigin error: src refspec master does not match any.
+ 2055  cd ~/scripts/
+ 2056  ls
+ 2057  ls -l
+ 2058  git init
+ 2059  ls -la
+ 2060  git add dir.sh 
+ 2061  git commit -m "script exercise"
+ 2062  git push
+ 2063  git remote add origin https://github.com/domcastro95/scripts.git
+ 2064  git push -u origin master
+ 2065  ls
+ 2066  git status
+ 2067  git add .bash_profile 
+ 2068  git commit -m "hidden file with pathway for scripts"
+ 2069  git push
+ 2070  ls
+ 2071  cd ..
+ 2072  history 40 >> ~/Desktop/eeb-177/class-assignments/classwork-Thurs-1-26.txt 
+ 2073  git /Desktop/eeb-177/class-assignments/
+ 2074  git /Desktop/eeb-177/class-assignments
+ 2075  cd  /Desktop/eeb-177/class-assignments
+ 2076  cd ~ /Desktop/eeb-177/class-assignments
+ 2077  ls
+ 2078  cd ~/Desktop/eeb-177/class-assignments
+ 2079  ls
+ 2080  git add classwork-Thurs-1-26.txt 
+ 2081  git commit -m "pathways scripts and intro to ipython"
+ 2082  git push
+ 2083  cd ..
+ 2084  git add class-assignments/
+ 2085  git commit -m "classwork"
+ 2086  git push
+ 2087  cd lab
+ 2088  lab
+ 2089  cd
+ 2090  cd ~/Desktop/eeb-177/lab-work/
+ 2091  ls
+ 2092  cd exercise-3/
+ 2093  ls
+ 2094  jupyter notebook
+ 2095  ls
+ 2096  ls -l
+ 2097  mkdir Exercise-3-hw
+ 2098  ls
+ 2099  ls -l
+ 2100  rmdir Exercise-3-hw/
+ 2101  ls
+ 2102  gedit Exercise-3.ipynb 
+ 2103  ls
+ 2104  touch exercise-3-hw.ipynb
+ 2105  ls
+ 2106  ls -l
+ 2107  ls -a
+ 2108  ls
+ 2109  cd ..
+ 2110  git add exercise-3/
+ 2111  cd exercise-3/
+ 2112  git add exercise-3-hw.ipynb 
+ 2113  git commit -m "using jupyter for beginners"
+ 2114  git push
+ 2115  ls
+ 2116  jupyter notebook
+ 2117  ls
+ 2118  gedit exercise-3-hw.ipynb 
+ 2119  ls
+ 2120  python notebook
+ 2121  jupyter notebook
+ 2122  ls
+ 2123  jupyter notebook
+ 2124  ls
+ 2125  git add exercise-3-hw.ipynb 
+ 2126  git commit -m "rock paper scissors"
+ 2127  git push
+ 2128  ls
+ 2129  jupyter notebwook
+ 2130  jupyter notebook
+ 2131  ls
+ 2132  git add exercise-3-hw.ipynb 
+ 2133  git commit -m "lab homework using python and jupyter"
+ 2134  git push
+ 2135  ls
+ 2136  gedit "history of lab homework 3" 
+ 2137  history 100 >> "history of lab homework 3"
