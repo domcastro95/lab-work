@@ -3,34 +3,138 @@ title: "Week-8-labwork-3-1"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+cocoli_dat <- read.table ("~/Desktop/eeb-177/class-assignments/classwork-21-Feb/cocoli.txt", header = TRUE)
+# we can look at the structure with str()
+str(cocoli_dat) 
 ```
 
-## R Markdown
+```{r}
+# we can inspect the dimensions of a dataframe with dim()
+dim(cocoli_dat)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+# and we can peek at the first few lines with head()
+head(cocoli_dat)
 ```
 
-## Including Plots
+```{r}
+# use the "data_frame$col_name" notation to extract the DBH1 column
+# save the column as a new vector called sizes_in_1994:
+sizes_in_1994 <- cocoli_dat$dbh1
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# use the cocoli_dat$tag column to name all of the values in the vector
+# that we just created
+names(sizes_in_1994) <- cocoli_dat$tag
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+sizes_in_1994[1:10]
 
-cocoli_dat <- read table ("~/Desktop/cocoli/cocoli.txt"), header=True
-str 
+# we can also subset vectors by the name of an element
+sizes_in_1994["000001"] # subset a vector by name
 
-cocoli_dat
-cocoli_dat$dbh1
-sizes_in_94.<-.cocoli_dat$dbh1
-names(sizes_in_94).<-.cocolidat$tag
+# Let us now also extract the tree sizes in 1997 and 1998
+sizes_in_1997 <- cocoli_dat$dbh2
+names(sizes_in_1997) <- cocoli_dat$tag
+
+sizes_in_1998 <- cocoli_dat$dbh3
+names(sizes_in_1998) <- cocoli_dat$tag
+```
+
+```{r}
+summary(sizes_in_1994)
+
+## Calculate RGR between 1997-1994
+# (size in 1997 - size in 1994)/size in 1994
+
+yearly_RGR = ((cocoli_dat$dbh2-cocoli_dat$dbh1)/cocoli_dat$dbh1)/3
+
+# print out the first 10 values of RGR
+yearly_RGR[1:10]
+```
+
+```{r}
+# add the RGR column
+cocoli_dat$rgr1 = yearly_RGR
+
+# note that we now have 23 columns - the 23rd column is the calculated RGR
+dim(cocoli_dat)
+
+## [1] 9466   23
+```
+
+```{r}
+hist(cocoli_dat$dbh1, xlab = "DBH in 1994 (mm)", main = "Distributions of sizes in 1994")
+```
+
+```{r}
+hist_data <- hist(cocoli_dat$dbh1, plot = FALSE)
+# the object hist_data has a vector called "counts" that represents the height of the bar
+hist_data$counts
+
+# NOTE: there are several areas of the histogram with height zero
+# we can't take a log of 0...
+# so let's take a log10 of counts+1
+hist_data$counts <- log10(hist_data$counts+1)
+
+# plot the histogram, with a modified y-axis label
+plot(hist_data, ylab = "log10(Frequency)")
+```
+
+```{r}
+# load in the library
+library(ggplot2)
+
+# one line of code for a histogram with logged y axis!
+ggplot(data = cocoli_dat) + geom_histogram(aes(dbh1)) + scale_y_log10()
+
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+## Warning: Transformation introduced infinite values in continuous y-axis
+
+## Warning: Removed 6 rows containing missing values (geom_bar)
+```
+
+```{r}
+# load in the library
+library(dplyr)
+```
+```{r}
+## 
+## Attaching package: 'dplyr'
+
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+
+# you will often see the following notation in dplyr:
+# ____ %>% _____
+# The '%>%' structure in R is identical to pipes (|) in the shell.
+# The item to the left of the pipe is passed as the input to the command to  the right.
+
+# the following line uses dplyr functions to show us a rearranged
+# data frame:
+
+# note: the negative sign within arrange (i.e. arrange(-dbh1)) 
+# arranges in descending order; the default is for ascending order
+cocoli_dat %>% arrange(-dbh1)
+```
+
+```{r}
+# we use the dplyr functions group_by(), select(), summarize(), and arrange()
+
+cocoli_dat %>% group_by(spcode) %>% 
+  summarize(total_1994_area = sum(pi*(dbh1/2)^2)) %>%
+  arrange(-total_1994_area)
+```
+```{r}
+cocoli_dat %>% group_by(spcode) %>% 
+  summarize(total_1994_area = sum(pi*(dbh1/2)^2)) %>%
+  arrange(-total_1994_area)
+```
+
+# Take the cocoli dat, then group by the species code, then summarize for each species the basal area using the formula above, then arrange the area in descending order.
